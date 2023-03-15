@@ -29,7 +29,6 @@ const Repl = ({
 
   const handleChange = useCallback(
     (code: string) => {
-      console.log("got change", code);
       if (code.length === 0) {
         setError(null);
         setElement(undefined);
@@ -48,9 +47,6 @@ const Repl = ({
   useMount(() => {
     if (value) debounceTranspile(value, setElement, setError);
   });
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
 
   return (
     <div className="flex-1 flex overflow-hidden">

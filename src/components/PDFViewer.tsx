@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { pdf } from "@react-pdf/renderer";
 import { Document, Page, pdfjs } from "react-pdf";
 
@@ -35,8 +35,17 @@ const PDFViewer = ({ value, onUrlChange, onRenderError }: PDFViewerType) => {
     return url;
   }, [value]);
 
-  useEffect(() => onUrlChange(render.value), [render.value, onUrlChange]);
-  useEffect(() => onRenderError(render.error), [render.error, onRenderError]);
+  const onRenderErrorRef = useRef(onRenderError);
+  onRenderErrorRef.current = onRenderError;
+  const onUrlChangeRef = useRef(onUrlChange);
+  onUrlChangeRef.current = onUrlChange;
+
+  useEffect(() => {
+    if (render.value) {
+      onUrlChangeRef.current(render.value);
+    }
+    onRenderErrorRef.current(render.error);
+  }, [render]);
 
   const onPreviousPage = () => {
     setCurrentPage((prev) => prev - 1);
@@ -73,7 +82,9 @@ const PDFViewer = ({ value, onUrlChange, onRenderError }: PDFViewerType) => {
       )}
 
       <div className="flex-1 p-4 flex z-50 items-center justify-center document-wrapper">
-        {shouldShowPreviousDocument && previousRenderValue ? (
+        {shouldShowPreviousDocument &&
+        previousRenderValue &&
+        !isLatestValueRendered ? (
           <Document
             key={previousRenderValue}
             className="previous-document"
