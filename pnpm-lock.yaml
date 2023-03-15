@@ -8,8 +8,11 @@ specifiers:
   '@monaco-editor/react': ^4.4.6
   '@react-pdf/renderer': ^3.1.7
   '@tailwindcss/forms': ^0.5.3
+  '@types/buble': ^0.20.1
+  '@types/lodash.debounce': ^4.0.7
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
+  '@types/react-pdf': ^6.2.0
   '@uiw/react-codemirror': ^4.19.9
   '@vitejs/plugin-react-swc': ^3.0.0
   ahooks: ^3.7.5
@@ -51,8 +54,11 @@ dependencies:
   react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
+  '@types/buble': 0.20.1
+  '@types/lodash.debounce': 4.0.7
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  '@types/react-pdf': 6.2.0
   '@vitejs/plugin-react-swc': 3.2.0_vite@4.1.4
   autoprefixer: 10.4.14_postcss@8.4.21
   postcss: 8.4.21
@@ -690,9 +696,25 @@ packages:
       tailwindcss: 3.2.7_postcss@8.4.21
     dev: false
 
+  /@types/buble/0.20.1:
+    resolution: {integrity: sha512-itmN3lGSTvXg9IImY5j290H+n0B3PpZST6AgEfJJDXfaMx2cdJJZro3/Ay+bZZdIAa25Z5rnoo9rHiPCbANZoQ==}
+    dependencies:
+      magic-string: 0.25.9
+    dev: true
+
   /@types/js-cookie/2.2.7:
     resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==}
     dev: false
+
+  /@types/lodash.debounce/4.0.7:
+    resolution: {integrity: sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==}
+    dependencies:
+      '@types/lodash': 4.14.191
+    dev: true
+
+  /@types/lodash/4.14.191:
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
+    dev: true
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -701,6 +723,15 @@ packages:
     resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
     dependencies:
       '@types/react': 18.0.28
+    dev: true
+
+  /@types/react-pdf/6.2.0:
+    resolution: {integrity: sha512-OSCYmrfaJvpXkM5V4seUMAhUDOAOqbGQf9kwv14INyTf7AjDs2ukfkkQrLWRQ8OjWrDklbXYWh5l7pT7l0N76g==}
+    dependencies:
+      '@types/react': 18.0.28
+      pdfjs-dist: 2.16.105
+    transitivePeerDependencies:
+      - worker-loader
     dev: true
 
   /@types/react/18.0.28:
@@ -1174,7 +1205,6 @@ packages:
   /dommatrix/1.0.3:
     resolution: {integrity: sha512-l32Xp/TLgWb8ReqbVJAFIvXmY7go4nTxxlWiAFyhoQw9RKEOHBZNnyGvJWqDVSPmq3Y9HlM4npqF/T6VMOXhww==}
     deprecated: dommatrix is no longer maintained. Please use @thednp/dommatrix.
-    dev: false
 
   /electron-to-chromium/1.4.327:
     resolution: {integrity: sha512-DIk2H4g/3ZhjgiABJjVdQvUdMlSABOsjeCm6gmUzIdKxAuFrGiJ8QXMm3i09grZdDBMC/d8MELMrdwYRC0+YHg==}
@@ -1504,7 +1534,6 @@ packages:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
       sourcemap-codec: 1.4.8
-    dev: false
 
   /make-cancellable-promise/1.2.1:
     resolution: {integrity: sha512-nigEn7brgUhjUb2lEobWUW4ZiJdIZ/Wct0UsmDsqaZhgLMvY1OC6FGLa/5SU2RvnyuilkjM7g5JGxt6CJZQGNw==}
@@ -1750,7 +1779,6 @@ packages:
     dependencies:
       dommatrix: 1.0.3
       web-streams-polyfill: 3.2.1
-    dev: false
 
   /pdfjs-dist/3.4.120:
     resolution: {integrity: sha512-B1hw9ilLG4m/jNeFA0C2A0PZydjxslP8ylU+I4XM7Bzh/xWETo9EiBV848lh0O0hLut7T6lK1V7cpAXv5BhxWw==}
@@ -2146,7 +2174,6 @@ packages:
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
     deprecated: Please use @jridgewell/sourcemap-codec instead
-    dev: false
 
   /stack-generator/2.0.10:
     resolution: {integrity: sha512-mwnua/hkqM6pF4k8SnmZ2zfETsRUpWXREfA/goT8SLCV4iOFa4bzOX2nDipWAZFPTjLvQB82f5yaodMVhK0yJQ==}
@@ -2415,7 +2442,6 @@ packages:
   /web-streams-polyfill/3.2.1:
     resolution: {integrity: sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==}
     engines: {node: '>= 8'}
-    dev: false
 
   /webidl-conversions/3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}

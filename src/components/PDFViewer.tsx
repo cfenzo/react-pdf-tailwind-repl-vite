@@ -78,24 +78,24 @@ const PDFViewer = ({ value, onUrlChange, onRenderError }: PDFViewerType) => {
             key={previousRenderValue}
             className="previous-document"
             file={previousRenderValue}
-            loading={null}
           >
             <Page key={currentPage} pageNumber={currentPage} />
           </Document>
         ) : null}
-        <Document
-          key={render.value}
-          className={shouldShowPreviousDocument ? "absolute" : null}
-          file={render.value}
-          loading={null}
-          onLoadSuccess={onDocumentLoad}
-        >
-          <Page
-            key={currentPage}
-            pageNumber={currentPage}
-            onRenderSuccess={() => setPreviousRenderValue(render.value)}
-          />
-        </Document>
+        {!!render.value && (
+          <Document
+            key={render.value}
+            className={shouldShowPreviousDocument ? "absolute" : ""}
+            file={render.value}
+            onLoadSuccess={onDocumentLoad}
+          >
+            <Page
+              key={currentPage}
+              pageNumber={currentPage}
+              onRenderSuccess={() => setPreviousRenderValue(render.value)}
+            />
+          </Document>
+        )}
       </div>
 
       <PageNavigator

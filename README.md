@@ -8,6 +8,8 @@ A Repl based on [diegomura/react-pdf-site](https://github.com/diegomura/react-pd
 
 ## TODO
 
+- [ ] Fix "No PDF file specified." error message overlaying
+- [ ] Add examples
 - [ ] Improve mobile GUI
 - [ ] Add a way to add your own tailwind config from the GUI
 - [ ] Add a way to add your own fonts from the GUI
